@@ -7,7 +7,7 @@ public class CursoPracticas {
 
     public static void main(String[] args) {
         List<String> cities = new ArrayList<>();
-        cities.add("London");
+        cities.add("Guisa");
         cities.add("New York");
         cities.add("Tokyo");
         cities.add("Barcelona");
@@ -30,7 +30,7 @@ public class CursoPracticas {
 //        cities.forEach(System.out::println);
 //        cities.stream().parallel().forEach(System.out::println);
 //Filtrar x ciudades 
-        cities.stream().filter(city -> city.startsWith("B"))
+        cities.stream().filter(city -> city.startsWith("G"))
                 //.filter(city -> city.contains("N"))
                 .forEach(System.out::println);
 
