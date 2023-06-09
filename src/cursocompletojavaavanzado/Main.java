@@ -24,23 +24,16 @@ public class Main {
         links.add("https://www.bbc.com/new/uk-61196071");
         links.add("https://www.bbc.com/sport/formula1/61192154");
 
-        Long timeStart = System.nanoTime();
-        links.stream().forEach(link -> getWebContent(link));
-        Long timeEnd = System.nanoTime();
-        System.out.println("Difference: " + (timeEnd - timeStart));
-
-        timeStart = System.nanoTime();
         links.stream().parallel().forEach(link -> getWebContent(link));
-        timeEnd = System.nanoTime();
-        System.out.println("Difference: " + (timeEnd - timeStart));
-
         String link = "https://www.bbc.com";
         String result = getWebContent(link);
 
     }
 
-    private static String getWebContent(String link) {
+    private synchronized static String getWebContent(String link) {
 
+        System.out.println("INT");
+        System.out.println(link);
         try {
             URL url = new URL(link);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -48,8 +41,10 @@ public class Main {
 
             InputStream input = conn.getInputStream();
             Stream<String> lines = new BufferedReader(new InputStreamReader(input)).lines();
+            System.out.println("END");
             String result = lines.collect(Collectors.joining());
             return result;
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
