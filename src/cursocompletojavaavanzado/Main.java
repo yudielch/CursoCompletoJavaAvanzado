@@ -24,7 +24,6 @@ public class Main {
         links.add("https://www.bbc.com/new/uk-61196071");
         links.add("https://www.bbc.com/sport/formula1/61192154");
 
-
         links.stream().parallel().forEach(link -> getWebContent(link));
         String link = "https://www.bbc.com";
         String result = getWebContent(link);
@@ -48,7 +47,6 @@ public class Main {
         }catch(IOException e){
             System.out.print(e.getMessage());
         }
-
     return "";
     }
 
